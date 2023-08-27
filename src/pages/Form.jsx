@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Modal from "react-modal"; //
+import style from './Form.module.css'
 
 export default function InstalacaoForm() {
   const [items, setItems] = useState([
@@ -347,25 +348,20 @@ console.log("Opening envioInformacaoModalVisible modal");
     setEnvioInformacaoModalVisible(true);
   };
 
+  const classeCondicional = items.id % 2 === 0 ? style.tablelight : style.tabledanger;
+
   return (
-    <div id="interface">
-      <form id="formulario" onSubmit={handleSubmit(onSubmit)}
-      style={{
-        background: "#593674",
-        paddingTop: "20px",
-        color: "#FFF",
-        fontFamily: "Dosis",
-        fontSize: "15pt",
-      }}
+    <div id="interface" className={style.interface}>
+      <form 
+        id="formulario"
+        onSubmit={handleSubmit(onSubmit)}
+        className={style.form}
       >
         <fieldset
-        style={{
-          paddingTop: "20px",
-          border: "solid 3px #FFF",
-          margin: "5px",
-        }}
+        id="fieldset" 
+          className={style.fieldset}
         >
-          <legend>Preencha os campos</legend>
+          <legend className={style.legend}>Preencha os campos</legend>
           <label htmlFor="tp">TP: </label>
           <input
             type="text"
@@ -374,31 +370,24 @@ console.log("Opening envioInformacaoModalVisible modal");
             name="nome"
             value={tpValue}
             onChange={(e) => setTpValue(e.target.value)}
+            className={style.inputText}
           />
         </fieldset>
 
-        <table className="table">
-          <thead>
-            <tr className="table-light"
-            style={{
-              background: "#AF9BB6",
-              width: "1400px",
-              margin: "auto",
-              marginTop: "5px",
-              marginBottom: "5px",
-            }}
-            >
+        <table className={style.tablestriped}>
+          <thead className={style.tablehead}>
+            <tr>
+              <th scope="col">Descrição do Serviço Fora do Escopo</th>
               <th scope="col">Item</th>
               <th scope="col">Valor</th>
               <th scope="col">Quantidade</th>
-              <th scope="col">Subtotal</th>
             </tr>
           </thead>
           <tbody>
             {items.map((item) => (
               <tr
                 key={item.id}
-                className={item.id % 2 === 0 ? "table-light" : "table-danger"}
+                className={item.id % 2 === 0 ? style.tabledanger : style.tablelight}
               >
                 <td>
                   <input

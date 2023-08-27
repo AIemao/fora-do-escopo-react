@@ -1,0 +1,12 @@
+.menu{
+    height: 75px;
+	width: auto;
+	background: #E4631A;
+}
+
+.menu h1 {
+	text-align: center;
+	padding-top: 10px;
+	font-family: Dosis;
+	color: #FFF;
+}
