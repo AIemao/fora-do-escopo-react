@@ -444,7 +444,7 @@ export default function InstalacaoForm() {
               <th scope="col">Descrição do Serviço Fora do Escopo</th>
               <th scope="col">Valor</th>
               <th scope="col">Quantidade</th>
-              <th scope="col">Total$</th>
+              <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody>
