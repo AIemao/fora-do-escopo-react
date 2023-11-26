@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Modal from "react-modal"; //
-import style from './Form.module.css'
+import style from "./Form.module.css";
 
 export default function InstalacaoForm() {
   const [items, setItems] = useState([
@@ -30,15 +30,19 @@ export default function InstalacaoForm() {
     { id: 8, label: "PAINEL DE SENHA", value: 240.0, quantity: 0 },
     { id: 9, label: "KDS", value: 240.0, quantity: 0 },
   ]);
+  const [selectedItems, setSelectedItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [tpValue, setTpValue] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [copyAnswersModalVisible, setCopyAnswersModalVisible] = useState(false); // Para o modal de cópia de respostas
-  const [envioInformacaoModalVisible, setEnvioInformacaoModalVisible] = useState(false); // Para o modal de envio de informações
+  const [envioInformacaoModalVisible, setEnvioInformacaoModalVisible] =
+    useState(false); // Para o modal de envio de informações
   const { control, handleSubmit } = useForm();
   const [clas, setClas] = useState("table-danger");
   const [linha, setLinha] = useState("linha01");
-  const [checkboxVisibility, setCheckboxVisibility] = useState(Array(items.length).fill(true));
+  const [checkboxVisibility, setCheckboxVisibility] = useState(
+    Array(items.length).fill(true)
+  );
   const checkboxRefs = useRef([]);
   const [backup, setBackup] = useState("");
   const [mobile, setMobile] = useState("");
@@ -49,7 +53,8 @@ export default function InstalacaoForm() {
   const [emissorCupom, setEmissorCupom] = useState("");
   const [marcaModeloEmissorCupom, setMarcaModeloEmissorCupom] = useState("");
   const [impressorasRemotas, setImpressorasRemotas] = useState("");
-  const [marcaModeloImpressorasRemotas, setMarcaModeloImpressorasRemotas] = useState("");
+  const [marcaModeloImpressorasRemotas, setMarcaModeloImpressorasRemotas] =
+    useState("");
   const [pinPad, setPinPad] = useState("");
   const [marcaModeloPinPad, setMarcaModeloPinPad] = useState("");
   const [equipamentoConectado, setEquipamentoConectado] = useState("");
@@ -125,6 +130,8 @@ export default function InstalacaoForm() {
           const updatedVisibility = [...checkboxVisibility];
           updatedVisibility[index] = false;
           setCheckboxVisibility(updatedVisibility);
+
+          setSelectedItems((prevSelectedItems) => [...prevSelectedItems, item]);
 
           // Atualize o estado do item com a quantidade
           return { ...item, quantity: quantidade };
@@ -278,27 +285,26 @@ export default function InstalacaoForm() {
       alert("Respostas copiadas para a área de transferência!");
     });
   };
-  
 
   // const handleEnvioInformacao = () => {
   //   const itensSelecionados = items.filter((item) => item.quantity > 0);
   //   // Montar o e-mail com as informações necessárias
   //   const emailBody = `
   //         Prezado Cliente,
-    
+
   //         Com base no catálogo de serviços fora do escopo padrão de suporte, informamos que será cobrada uma taxa pelo serviço citado abaixo. A taxa será faturada no próximo fechamento do período e será enviado um boleto separado. Estando de acordo, gentileza responder esse e-mail para que possamos dar continuidade ao processo de agendamento do procedimento.
-    
+
   //         INFORMAÇÕES DO CLIENTE:
   //         TP: ${tpValue}
-  //         NOME COMPLETO: 
-  //         CPF: 
-  //         CARGO: 
-  //         CNPJ: 
-  //         RAZÃO SOCIAL: 
-  //         NOME LOJA/REDE: 
-  //         ENDEREÇO: 
-  //         TELEFONE: 
-    
+  //         NOME COMPLETO:
+  //         CPF:
+  //         CARGO:
+  //         CNPJ:
+  //         RAZÃO SOCIAL:
+  //         NOME LOJA/REDE:
+  //         ENDEREÇO:
+  //         TELEFONE:
+
   //         Tabela:
   //         Descrição do Serviço Fora do Escopo:
   //         ${itensSelecionados
@@ -314,20 +320,20 @@ export default function InstalacaoForm() {
   //         0
   //     )
   //   }
-    
+
   //         PRÉ-REQUISITOS:
   //         Consulte os requisitos mínimos de equipamentos em: https://share.linx.com.br/x/P7Ow
-    
+
   //         Segue o Linx Share de Boas Práticas do nosso Suporte: https://share.linx.com.br/pages/viewpage.action?pageId=65923790
-    
+
   //         O serviço será feito por conexão através do Software de Acesso Remoto.
-    
+
   //         “A Linx reserva-se no direito de preservar o bom funcionamento do sistema, que envolve atender aos requisitos mínimos de equipamento e integração com periféricos, desde que estes estejam em perfeito estado de funcionamento e sob a adequada configuração fornecida pelo fabricante e pela Equipe Linx Degust”.
-    
+
   //         É obrigatório o preenchimento de todos os dados para autorizar o serviço. Caso o email não seja respondido com todos os dados do responsável dentro do prazo determinado, o chamado será cancelado automaticamente.
-    
+
   //         Este termo de aceite é válido por 72 horas, caso não seja respondido dentro do prazo o chamado será cancelado automaticamente.
-    
+
   //         Ficamos no aguardo para darmos continuidade.
   //       `;
 
@@ -338,58 +344,118 @@ export default function InstalacaoForm() {
 
   const handleOpenModal = () => {
     console.log("Opening copyAnswersModalVisible modal");
-    processar()
+    processar();
     setModalVisible(true);
-
   };
-  
+
   const handleOpenEnvioInformacaoModal = () => {
-console.log("Opening envioInformacaoModalVisible modal");
+    console.log("Opening envioInformacaoModalVisible modal");
     setEnvioInformacaoModalVisible(true);
   };
 
-  const classeCondicional = items.id % 2 === 0 ? style.tablelight : style.tabledanger;
+  const classeCondicional =
+    items.id % 2 === 0 ? style.tablelight : style.tabledanger;
+
+    const handleReset = () => {
+      setItems([
+        { id: 1, label: "SERVIDOR COM BACKUP", value: 240.0, quantity: 0 },
+        { id: 2, label: "SERVIDOR SEM BACKUP", value: 480.0, quantity: 0 },
+        { id: 3, label: "TERMINAL PDV", value: 240.0, quantity: 0 },
+        {
+          id: 4,
+          label: "INTEGRADOR DELIVERY/APP DO CONSUMIDOR",
+          value: 240.0,
+          quantity: 0,
+        },
+        {
+          id: 5,
+          label: "INSTALAÇÃO LINX DEGUST MOBILE",
+          value: 480.0,
+          quantity: 0,
+        },
+        { id: 6, label: "APK MOBILE", value: 240.0, quantity: 0 },
+        {
+          id: 7,
+          label: "INSTALAÇÃO TERMINAL AUTO ATENDIMENTO",
+          value: 480.0,
+          quantity: 0,
+        },
+        { id: 8, label: "PAINEL DE SENHA", value: 240.0, quantity: 0 },
+        { id: 9, label: "KDS", value: 240.0, quantity: 0 },
+      ]);
+      const resetItems = items.map((item) => ({ ...item, quantity: 0 }));
+  setItems(resetItems);
+  setTotal(0);
+  setTpValue("");
+  setBackup("");
+  setMobile("");
+  setLojaParada("");
+  setQuantidadePDVs("");
+  setQuantidadePDVsInstalados("");
+  setNumeroPDVInstalado("");
+  setEmissorCupom("");
+  setMarcaModeloEmissorCupom("");
+  setImpressorasRemotas("");
+  setMarcaModeloImpressorasRemotas("");
+  setPinPad("");
+  setMarcaModeloPinPad("");
+  setEquipamentoConectado("");
+  setMarcaModeloEquipamentoConectado("");
+  setCheckboxVisibility(Array(items.length).fill(true));
+    }
 
   return (
     <div id="interface" className={style.interface}>
-      <form 
+      <form
         id="formulario"
         onSubmit={handleSubmit(onSubmit)}
         className={style.form}
       >
-        <fieldset
-        id="fieldset" 
-          className={style.fieldset}
-        >
-          <legend className={style.legend}>Preencha os campos</legend>
-          <label htmlFor="tp">TP: </label>
-          <input
-            type="text"
-            id="tp"
-            placeholder="1232456"
-            name="nome"
-            value={tpValue}
-            onChange={(e) => setTpValue(e.target.value)}
-            className={style.inputText}
-          />
-        </fieldset>
+        <fieldset id="fieldset" className={style.fieldset}>
+  <legend className={style.legend}>Preencha os campos</legend>
+
+  <div className={style.inputContainer}>
+    <label htmlFor="tp">TP: </label>
+    <input
+      type="text"
+      id="tp"
+      placeholder="1232456"
+      name="nome"
+      value={tpValue}
+      onChange={(e) => setTpValue(e.target.value)}
+      className={style.inputText}
+    />
+  </div>
+
+  <div className={style.importantTextContainer}>
+    <p className={style.importantText}>
+      Importante! - Caso seja SERVIDOR SEM BACKUP - Oriente a loja a verificar a tributação antes de iniciar a instalação
+    </p>
+    <p className={style.importantText}>
+      Periféricos devidamente instalados e se comunicando como Windows
+    </p>
+  </div>
+</fieldset>
+
 
         <table className={style.tablestriped}>
           <thead className={style.tablehead}>
             <tr>
               <th scope="col">Descrição do Serviço Fora do Escopo</th>
-              <th scope="col">Item</th>
               <th scope="col">Valor</th>
               <th scope="col">Quantidade</th>
+              <th scope="col">Total$</th>
             </tr>
           </thead>
           <tbody>
             {items.map((item) => (
               <tr
                 key={item.id}
-                className={item.id % 2 === 0 ? style.tabledanger : style.tablelight}
+                className={
+                  item.id % 2 === 0 ? style.tabledanger : style.tablelight
+                }
               >
-                <td>
+                <td className={style.descricaoServico}>
                   <input
                     type="checkbox"
                     name={`n_item${item.id}`}
@@ -404,7 +470,7 @@ console.log("Opening envioInformacaoModalVisible modal");
                   </label>
                 </td>
                 <td className={`linha${item.id % 2 === 0 ? "02" : "01"}`}>
-                  {item.value}
+                  R$: {item.value}
                 </td>
                 <td className={`linha${item.id % 2 === 0 ? "02" : "01"}`}>
                   <input
@@ -419,7 +485,7 @@ console.log("Opening envioInformacaoModalVisible modal");
                   />
                 </td>
                 <td className={`linha${item.id % 2 === 0 ? "02" : "01"}`}>
-                  {item.value * item.quantity}
+                  R$: {item.value * item.quantity}
                 </td>
               </tr>
             ))}
@@ -442,347 +508,385 @@ console.log("Opening envioInformacaoModalVisible modal");
             </tr>
           </tbody>
         </table>
+        <div className={style.buttonContainer}>
+          <button
+            type="submit"
+            className={style.processButton}
+            id="processar"
+            onClick={handleOpenModal}
+          >
+            Processar
+          </button>
+          <button
+            type="button"
+            className={style.resetButton}
+            id="reset"
+            onClick={handleReset}
+          >
+            Reset
+          </button>
 
-        <button
-          type="submit"
-          className="btn btn-success btn-lg btn-block"
-          id="processar"
-          onClick={handleOpenModal}
-          style={{ width: "415px" }}
-        >
-          Processar
-        </button>
-        <button
-          type="button"
-          className="btn btn-danger btn-lg btn-block"
-          id="reset"
-          onClick={() => {}}
-          style={{ width: "415px" }}
-        >
-          Reset
-        </button>
-
-        <button
-          type="button"
-          className="btn btn-danger btn-lg btn-block"
-          onClick={handleOpenEnvioInformacaoModal}
-          style={{ width: "415px" }}
-        >
-          Envio de Informação
-        </button>
+          <button
+            type="button"
+            className={style.envioButton}
+            onClick={handleOpenEnvioInformacaoModal}
+          >
+            Envio de Informação
+          </button>
+        </div>
       </form>
 
       {/* Modal Mobile */}
       {modalVisible && (
-      <Modal
-        isOpen={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-        contentLabel="Perguntas"
-        ariaHideApp={false}
-      >
-        {/* Conteúdo do modal */}
-        <h2>Preencha as perguntas:</h2>
-        <form>
-          <div className="pergunta">
-            <p>A instalação será realizada com backup ou sem dados?</p>
+        <Modal
+          isOpen={modalVisible}
+          onRequestClose={() => setModalVisible(false)}
+          contentLabel="Perguntas"
+          ariaHideApp={false}
+        >
+          {/* Conteúdo do modal */}
+          <h2>Preencha as perguntas:</h2>
+          <form>
+            <div className="pergunta">
+              <p>A instalação será realizada com backup ou sem dados?</p>
 
-            <input
-              type="radio"
-              name="backup"
-              value="Sim"
-              onChange={(e) => setBackup(e.target.value)}
-            />
-            <label>Sim</label>
-            <input
-              type="radio"
-              name="backup"
-              value="Não"
-              onChange={(e) => setBackup(e.target.value)}
-            />
-            <label>Não</label>
-          </div>
+              <input
+                type="radio"
+                name="backup"
+                value="Sim"
+                onChange={(e) => setBackup(e.target.value)}
+              />
+              <label>Sim</label>
+              <input
+                type="radio"
+                name="backup"
+                value="Não"
+                onChange={(e) => setBackup(e.target.value)}
+              />
+              <label>Não</label>
+            </div>
 
-          <div className="pergunta">
-            <p>A loja utiliza Mobile?</p>
+            <div className="pergunta">
+              <p>A loja utiliza Mobile?</p>
 
-            <input
-              type="radio"
-              name="mobile"
-              value="Sim"
-              onChange={(e) => setMobile(e.target.value)}
-            />
-            <label>Sim</label>
-            <input
-              type="radio"
-              name="mobile"
-              value="Não"
-              onChange={(e) => setMobile(e.target.value)}
-            />
-            <label>Não</label>
-          </div>
+              <input
+                type="radio"
+                name="mobile"
+                value="Sim"
+                onChange={(e) => setMobile(e.target.value)}
+              />
+              <label>Sim</label>
+              <input
+                type="radio"
+                name="mobile"
+                value="Não"
+                onChange={(e) => setMobile(e.target.value)}
+              />
+              <label>Não</label>
+            </div>
 
-          <div className="pergunta">
-            <p>Loja está parada?</p>
+            <div className="pergunta">
+              <p>Loja está parada?</p>
 
-            <input
-              type="radio"
-              name="lojaParada"
-              value="Sim"
-              onChange={(e) => setLojaParada(e.target.value)}
-            />
-            <label>Sim</label>
-            <input
-              type="radio"
-              name="lojaParada"
-              value="Não"
-              onChange={(e) => setLojaParada(e.target.value)}
-            />
-            <label>Não</label>
-          </div>
+              <input
+                type="radio"
+                name="lojaParada"
+                value="Sim"
+                onChange={(e) => setLojaParada(e.target.value)}
+              />
+              <label>Sim</label>
+              <input
+                type="radio"
+                name="lojaParada"
+                value="Não"
+                onChange={(e) => setLojaParada(e.target.value)}
+              />
+              <label>Não</label>
+            </div>
 
-          <div className="pergunta">
-            <p>Quantos PDVs a loja possui?</p>
-            <input
-              type="number"
-              name="quantidadePDVs"
-              min="0"
-              onChange={(e) => setQuantidadePDVs(e.target.value)}
-              placeholder="Informe a quantidade"
-            />
-          </div>
+            <div className="pergunta">
+              <p>Quantos PDVs a loja possui?</p>
+              <input
+                type="number"
+                name="quantidadePDVs"
+                min="0"
+                onChange={(e) => setQuantidadePDVs(e.target.value)}
+                placeholder="Informe a quantidade"
+              />
+            </div>
 
-          <div className="pergunta">
-            <p>Quantos PDVs serão instalados?</p>
-            <input
-              type="number"
-              name="quantidadePDVsInstalados"
-              min="0"
-              onChange={(e) => setQuantidadePDVsInstalados(e.target.value)}
-              placeholder="Informe a quantidade"
-            />
-          </div>
+            <div className="pergunta">
+              <p>Quantos PDVs serão instalados?</p>
+              <input
+                type="number"
+                name="quantidadePDVsInstalados"
+                min="0"
+                onChange={(e) => setQuantidadePDVsInstalados(e.target.value)}
+                placeholder="Informe a quantidade"
+              />
+            </div>
 
-          <div className="pergunta">
-            <p>Qual o número do PDV que será instalado?</p>
-            <input
-              type="text"
-              name="numeroPDVInstalado"
-              onChange={(e) => setNumeroPDVInstalado(e.target.value)}
-              placeholder="Informe o número"
-            />
-          </div>
-
-          <div className="pergunta">
-            <p>Qual é o emissor de cupom utilizado (S@T, NFCE, ECF)?</p>
-            <input
-              type="radio"
-              name="emissorCupom"
-              value="S@T"
-              onChange={(e) => setEmissorCupom(e.target.value)}
-            />
-            <label>S@T</label>
-            <input
-              type="radio"
-              name="emissorCupom"
-              value="NFCE"
-              onChange={(e) => setEmissorCupom(e.target.value)}
-            />
-            <label>NFCE</label>
-            <input
-              type="radio"
-              name="emissorCupom"
-              value="ECF"
-              onChange={(e) => setEmissorCupom(e.target.value)}
-            />
-            <label>ECF</label>
-          </div>
-
-          <div className="pergunta">
-            <p>Qual é a marca e modelo do emissor de cupom (DANFE)?</p>
-            <input
-              type="text"
-              name="marcaModeloEmissorCupom"
-              onChange={(e) => setMarcaModeloEmissorCupom(e.target.value)}
-              placeholder="Informe a marca e modelo"
-            />
-          </div>
-
-          <div className="pergunta">
-            <p>Impressoras Remotas?</p>
-            <input
-              type="radio"
-              name="impressorasRemotas"
-              value="Sim"
-              onChange={(e) => setImpressorasRemotas(e.target.value)}
-            />
-            <label>Sim</label>
-            <input
-              type="radio"
-              name="impressorasRemotas"
-              value="Não"
-              onChange={(e) => setImpressorasRemotas(e.target.value)}
-            />
-            <label>Não</label>
-            {impressorasRemotas === "Sim" && (
+            <div className="pergunta">
+              <p>Qual o número do PDV que será instalado?</p>
               <input
                 type="text"
-                name="marcaModeloImpressorasRemotas"
-                onChange={(e) =>
-                  setMarcaModeloImpressorasRemotas(e.target.value)
-                }
-                placeholder="Informe a marca e modelo"
+                name="numeroPDVInstalado"
+                onChange={(e) => setNumeroPDVInstalado(e.target.value)}
+                placeholder="Informe o número"
               />
-            )}
-          </div>
+            </div>
 
-          <div className="pergunta">
-            <p>Loja tem PIN PAD?</p>
-            <input
-              type="radio"
-              name="pinPad"
-              value="Sim"
-              onChange={(e) => setPinPad(e.target.value)}
-            />
-            <label>Sim</label>
-            <input
-              type="radio"
-              name="pinPad"
-              value="Não"
-              onChange={(e) => setPinPad(e.target.value)}
-            />
-            <label>Não</label>
-            {pinPad === "Sim" && (
+            <div className="pergunta">
+              <p>Qual é o emissor de cupom utilizado (S@T, NFCE, ECF)?</p>
+              <input
+                type="radio"
+                name="emissorCupom"
+                value="S@T"
+                onChange={(e) => setEmissorCupom(e.target.value)}
+              />
+              <label>S@T</label>
+              <input
+                type="radio"
+                name="emissorCupom"
+                value="NFCE"
+                onChange={(e) => setEmissorCupom(e.target.value)}
+              />
+              <label>NFCE</label>
+              <input
+                type="radio"
+                name="emissorCupom"
+                value="ECF"
+                onChange={(e) => setEmissorCupom(e.target.value)}
+              />
+              <label>ECF</label>
+            </div>
+
+            <div className="pergunta">
+              <p>Qual é a marca e modelo do emissor de cupom (DANFE)?</p>
               <input
                 type="text"
-                name="marcaModeloPinPad"
-                onChange={(e) => setMarcaModeloPinPad(e.target.value)}
+                name="marcaModeloEmissorCupom"
+                onChange={(e) => setMarcaModeloEmissorCupom(e.target.value)}
                 placeholder="Informe a marca e modelo"
               />
-            )}
-          </div>
+            </div>
 
-          <div className="pergunta">
-            <p>Existe mais algum equipamento conectado à máquina?</p>
-            <input
-              type="radio"
-              name="equipamentoConectado"
-              value="Sim"
-              onChange={(e) => setEquipamentoConectado(e.target.value)}
-            />
-            <label>Sim</label>
-            <input
-              type="radio"
-              name="equipamentoConectado"
-              value="Não"
-              onChange={(e) => setEquipamentoConectado(e.target.value)}
-            />
-            <label>Não</label>
-            {equipamentoConectado === "Sim" && (
+            <div className="pergunta">
+              <p>Impressoras Remotas?</p>
               <input
-                type="text"
-                name="marcaModeloEquipamentoConectado"
-                onChange={(e) =>
-                  setMarcaModeloEquipamentoConectado(e.target.value)
-                }
-                placeholder="Informe a marca e modelo"
+                type="radio"
+                name="impressorasRemotas"
+                value="Sim"
+                onChange={(e) => setImpressorasRemotas(e.target.value)}
               />
-            )}
-          </div>
+              <label>Sim</label>
+              <input
+                type="radio"
+                name="impressorasRemotas"
+                value="Não"
+                onChange={(e) => setImpressorasRemotas(e.target.value)}
+              />
+              <label>Não</label>
+              {impressorasRemotas === "Sim" && (
+                <input
+                  type="text"
+                  name="marcaModeloImpressorasRemotas"
+                  onChange={(e) =>
+                    setMarcaModeloImpressorasRemotas(e.target.value)
+                  }
+                  placeholder="Informe a marca e modelo"
+                />
+              )}
+            </div>
 
-          <br />
+            <div className="pergunta">
+              <p>Loja tem PIN PAD?</p>
+              <input
+                type="radio"
+                name="pinPad"
+                value="Sim"
+                onChange={(e) => setPinPad(e.target.value)}
+              />
+              <label>Sim</label>
+              <input
+                type="radio"
+                name="pinPad"
+                value="Não"
+                onChange={(e) => setPinPad(e.target.value)}
+              />
+              <label>Não</label>
+              {pinPad === "Sim" && (
+                <input
+                  type="text"
+                  name="marcaModeloPinPad"
+                  onChange={(e) => setMarcaModeloPinPad(e.target.value)}
+                  placeholder="Informe a marca e modelo"
+                />
+              )}
+            </div>
 
-          <button onClick={() => setModalVisible(false)}>Fechar</button>
-          <button type="button" onClick={handleCopyAnswers}>
-            Copiar Respostas
-          </button>
-        </form>
-      </Modal>
-    )}
+            <div className="pergunta">
+              <p>Existe mais algum equipamento conectado à máquina?</p>
+              <input
+                type="radio"
+                name="equipamentoConectado"
+                value="Sim"
+                onChange={(e) => setEquipamentoConectado(e.target.value)}
+              />
+              <label>Sim</label>
+              <input
+                type="radio"
+                name="equipamentoConectado"
+                value="Não"
+                onChange={(e) => setEquipamentoConectado(e.target.value)}
+              />
+              <label>Não</label>
+              {equipamentoConectado === "Sim" && (
+                <input
+                  type="text"
+                  name="marcaModeloEquipamentoConectado"
+                  onChange={(e) =>
+                    setMarcaModeloEquipamentoConectado(e.target.value)
+                  }
+                  placeholder="Informe a marca e modelo"
+                />
+              )}
+            </div>
 
-{envioInformacaoModalVisible && (
-      <Modal
-      isOpen={envioInformacaoModalVisible}
-      onRequestClose={() => setEnvioInformacaoModalVisible(false)}
-      contentLabel="Perguntas"
-      ariaHideApp={false}
-    >
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => setEnvioInformacaoModalVisible(false)}>
-              &times;
-            </span>
-            <h2>SERVIÇO FORA DE ESCOPO</h2>
-            <p>
-              Prezado Cliente,
-              <br />
-              Com base no catálogo de serviços fora do escopo padrão de suporte, informamos que será cobrada uma taxa pelo serviço citado abaixo. A taxa será faturada no próximo fechamento do período e será enviado um boleto separado. Estando de acordo, gentileza responder esse e-mail para que possamos dar continuidade ao processo de agendamento do procedimento.
-            </p>
+            <br />
 
-            <h3>INFORMAÇÕES DO CLIENTE:</h3>
-            <p>TP: {tpValue}</p>
-            {/* Adicione outras informações do cliente aqui */}
+            <button onClick={() => setModalVisible(false)}>Fechar</button>
+            <button type="button" onClick={handleCopyAnswers}>
+              Copiar Respostas
+            </button>
+          </form>
+        </Modal>
+      )}
 
-            <h3>Descrição do Serviço Fora do Escopo</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Descrição do Serviço</th>
-                  <th>Valor</th>
-                  <th>Quantidade</th>
-                  <th>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.label}</td>
-                    <td>{item.value}</td>
-                    <td>{item.quantity}</td>
-                    <td>{item.value * item.quantity}</td>
+      {envioInformacaoModalVisible && (
+        <Modal
+          isOpen={envioInformacaoModalVisible}
+          onRequestClose={() => setEnvioInformacaoModalVisible(false)}
+          contentLabel="Perguntas"
+          ariaHideApp={false}
+        >
+          <div className={style.modal}>
+            <div style={{ "font-family": "Calibri sans-serif"}}>
+              <span
+                className="close"
+                onClick={() => setEnvioInformacaoModalVisible(false)}
+              >
+                &times;
+              </span>
+              <h2>SERVIÇO FORA DE ESCOPO - LINX</h2>
+              <p style={{ "font-size": "11pt"}}>
+                Prezado Cliente,
+                <br />
+                Com base no catálogo de serviços fora do escopo padrão de
+                suporte, informamos que será cobrada uma taxa pelo serviço
+                citado abaixo. A taxa será faturada no próximo fechamento do
+                período e será enviado um boleto separado. Estando de acordo,
+                gentileza responder esse e-mail para que possamos dar
+                continuidade ao processo de agendamento do procedimento.
+              </p>
+
+              <h3>INFORMAÇÕES DO CLIENTE:</h3>
+              <div
+              style={{ "font-size": "11pt"}}
+              >
+              <p >TP: {tpValue}</p>
+              <p>NOME COMPLETO: </p>
+              <p>CPF: </p>
+              <p>CARGO: </p>
+              <p>CNPJ: </p>
+              <p>RAZÃO SOCIAL: </p>
+              <p>NOME LOJA/REDE: </p>
+              <p>ENDEREÇO: </p>
+              <p>TELEFONE: </p>
+              </div>
+
+              <h3>Descrição do Serviço Fora do Escopo</h3>
+              <table
+                style={{
+                  "width": "100%",
+                  "border-collapse": "collapse",
+                  "margin-top": "15px",
+                  "font-size": "11pt",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>Descrição do Serviço</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                    <th>Subtotal</th>
                   </tr>
-                ))}
-                <tr>
-                  <td className="total" colSpan="3">
-                    Total:
-                  </td>
-                  <td className="total">{total}</td>
-                </tr>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {items.map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.label}</td>
+                      <td>R$: {item.value}</td>
+                      <td>{item.quantity}</td>
+                      <td>R$: {item.value * item.quantity}</td>
+                    </tr>
+                  ))}
+                  <tr>
+                    <td className={style.total} colSpan="3">
+                      Total:
+                    </td>
+                    <td className={style.total}>R$: {total}</td>
+                  </tr>
+                </tbody>
+              </table>
 
-            <h3>PRÉ-REQUISITOS:</h3>
-            <p>
-              Consulte os requisitos mínimos de equipamentos em:{" "}
-              <a href="https://share.linx.com.br/x/P7Ow">https://share.linx.com.br/x/P7Ow</a>
-            </p>
+              <h3>PRÉ-REQUISITOS:</h3>
+              <div style={{ "font-size": "11pt"}}>
+              <p>
+                Consulte os requisitos mínimos de equipamentos em:{" "}
+                <a href="https://share.linx.com.br/pages/viewpage.action?pageId=334144784">
+                  https://share.linx.com.br/pages/viewpage.action?pageId=334144784
+                </a>
+              </p>
 
-            <p>
-              Segue o Linx Share de Boas Práticas do nosso Suporte:{" "}
-              <a href="https://share.linx.com.br/pages/viewpage.action?pageId=65923790">
-                https://share.linx.com.br/pages/viewpage.action?pageId=65923790
-              </a>
-            </p>
+              <p>
+                Segue o Linx Share de Boas Práticas do nosso Suporte:{" "}
+                <a href="https://share.linx.com.br/pages/viewpage.action?pageId=65923790">
+                  https://share.linx.com.br/pages/viewpage.action?pageId=65923790
+                </a>
+              </p>
 
-            <p>
-              O serviço será feito por conexão através do Software de Acesso Remoto.
-              <br />
-              “A Linx reserva-se no direito de preservar o bom funcionamento do sistema, que envolve atender aos requisitos mínimos de equipamento e integração com periféricos, desde que estes estejam em perfeito estado de funcionamento e sob a adequada configuração fornecida pelo fabricante e pela Equipe Linx Degust”.
-            </p>
+              <p>
+                O serviço será feito por conexão através do Software de Acesso
+                Remoto.
+                <br />
+                “A Linx reserva-se no direito de preservar o bom funcionamento
+                do sistema, que envolve atender aos requisitos mínimos de
+                equipamento e integração com periféricos, desde que estes
+                estejam em perfeito estado de funcionamento e sob a adequada
+                configuração fornecida pelo fabricante e pela Equipe Linx
+                Degust”.
+              </p>
 
-            <p>
-              É obrigatório o preenchimento de todos os dados para autorizar o serviço. Caso o email não seja respondido com todos os dados do responsável dentro do prazo determinado, o chamado será cancelado automaticamente.
-            </p>
+              <p>
+                É obrigatório o preenchimento de todos os dados para autorizar o
+                serviço. Caso o email não seja respondido com todos os dados do
+                responsável dentro do prazo determinado, o chamado será
+                cancelado automaticamente.
+              </p>
 
-            <p>
-              Este termo de aceite é valido por 72 horas, caso não seja respondido dentro do prazo o chamado será cancelado automaticamente.
-            </p>
+              <p>
+                Este termo de aceite é valido por 72 horas, caso não seja
+                respondido dentro do prazo o chamado será cancelado
+                automaticamente.
+              </p>
 
-            <p>Ficamos no aguardo para darmos continuidade.</p>
+              <p>Ficamos no aguardo para darmos continuidade.</p>
+              </div>
+            </div>
           </div>
-        </div>
         </Modal>
       )}
     </div>
-    
   );
 }
