@@ -432,7 +432,7 @@ export default function InstalacaoForm() {
       Importante! - Caso seja SERVIDOR SEM BACKUP - Oriente a loja a verificar a tributação antes de iniciar a instalação
     </p>
     <p className={style.importantText}>
-      Periféricos devidamente instalados e se comunicando como Windows
+      Periféricos devidamente instalados e se comunicando com o Windows
     </p>
   </div>
 </fieldset>
@@ -586,6 +586,25 @@ export default function InstalacaoForm() {
             </div>
 
             <div className="pergunta">
+              <p>A loja utiliza Auto Atendimento ONE?</p>
+
+              <input
+                type="radio"
+                name="mobile"
+                value="Sim"
+                onChange={(e) => setMobile(e.target.value)}
+              />
+              <label>Sim</label>
+              <input
+                type="radio"
+                name="mobile"
+                value="Não"
+                onChange={(e) => setMobile(e.target.value)}
+              />
+              <label>Não</label>
+            </div>
+
+            <div className="pergunta">
               <p>Loja está parada?</p>
 
               <input
@@ -687,6 +706,7 @@ export default function InstalacaoForm() {
                 onChange={(e) => setImpressorasRemotas(e.target.value)}
               />
               <label>Não</label>
+              <br />
               {impressorasRemotas === "Sim" && (
                 <input
                   type="text"
@@ -715,6 +735,7 @@ export default function InstalacaoForm() {
                 onChange={(e) => setPinPad(e.target.value)}
               />
               <label>Não</label>
+              <br />
               {pinPad === "Sim" && (
                 <input
                   type="text"
@@ -741,6 +762,7 @@ export default function InstalacaoForm() {
                 onChange={(e) => setEquipamentoConectado(e.target.value)}
               />
               <label>Não</label>
+              <br />
               {equipamentoConectado === "Sim" && (
                 <input
                   type="text"
@@ -752,13 +774,15 @@ export default function InstalacaoForm() {
                 />
               )}
             </div>
+             <br />
 
-            <br />
-
-            <button onClick={() => setModalVisible(false)}>Fechar</button>
             <button type="button" onClick={handleCopyAnswers}>
               Copiar Respostas
             </button>
+            <br />
+
+            <button onClick={() => setModalVisible(false)}>Fechar</button>
+            
           </form>
         </Modal>
       )}
