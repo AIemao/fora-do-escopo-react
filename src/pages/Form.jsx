@@ -46,6 +46,7 @@ export default function InstalacaoForm() {
   const checkboxRefs = useRef([]);
   const [backup, setBackup] = useState("");
   const [mobile, setMobile] = useState("");
+  const [AA, setAA] = useState("");
   const [lojaParada, setLojaParada] = useState("");
   const [quantidadePDVs, setQuantidadePDVs] = useState("");
   const [quantidadePDVsInstalados, setQuantidadePDVsInstalados] = useState("");
@@ -241,6 +242,9 @@ export default function InstalacaoForm() {
     A loja utiliza Mobile (Tablet)? 
     ${mobile}
 
+    A loja utiliza Auto Atendimento ONE? 
+    ${AA}
+
     Loja está parada? 
     ${lojaParada}
 
@@ -389,6 +393,7 @@ export default function InstalacaoForm() {
   setTpValue("");
   setBackup("");
   setMobile("");
+  setAA("");
   setLojaParada("");
   setQuantidadePDVs("");
   setQuantidadePDVsInstalados("");
@@ -590,16 +595,16 @@ export default function InstalacaoForm() {
 
               <input
                 type="radio"
-                name="mobile"
+                name="aa"
                 value="Sim"
-                onChange={(e) => setMobile(e.target.value)}
+                onChange={(e) => setAA(e.target.value)}
               />
               <label>Sim</label>
               <input
                 type="radio"
-                name="mobile"
+                name="aa"
                 value="Não"
-                onChange={(e) => setMobile(e.target.value)}
+                onChange={(e) => setAA(e.target.value)}
               />
               <label>Não</label>
             </div>
