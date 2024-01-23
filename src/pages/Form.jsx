@@ -823,15 +823,15 @@ export default function InstalacaoForm() {
               <div
               style={{ "font-size": "11pt"}}
               >
-              <p >TP: {tpValue}</p>
-              <p>NOME COMPLETO: </p>
-              <p>CPF: </p>
-              <p>CARGO: </p>
-              <p>CNPJ: </p>
-              <p>RAZÃO SOCIAL: </p>
-              <p>NOME LOJA/REDE: </p>
-              <p>ENDEREÇO: </p>
-              <p>TELEFONE: </p>
+              <p ><strong>TP: </strong>{tpValue}</p>
+              <p><strong> NOME COMPLETO: </strong></p>
+              <p><strong>CPF: </strong></p>
+              <p><strong>CARGO: </strong></p>
+              <p><strong>CNPJ: </strong></p>
+              <p><strong>RAZÃO SOCIAL: </strong></p>
+              <p><strong>NOME LOJA/REDE: </strong></p>
+              <p><strong>ENDEREÇO: </strong></p>
+              <p><strong>TELEFONE: </strong></p>
               </div>
 
               <h3>Descrição do Serviço Fora do Escopo</h3>
