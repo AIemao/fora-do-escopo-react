@@ -236,7 +236,7 @@ export default function InstalacaoForm() {
   const handleCopyAnswers = () => {
     // Crie um objeto com todas as respostas
     const answersText = `
-    A instalação será realizada com backup ou sem dados? 
+    A instalação será realizada com Backup ou Base Zerada? 
     ${backup}
     
     A loja utiliza Mobile (Tablet)? 
@@ -553,22 +553,22 @@ export default function InstalacaoForm() {
           <h2>Preencha as perguntas:</h2>
           <form>
             <div className="pergunta">
-              <p>A instalação será realizada com backup ou sem dados?</p>
+              <p>A instalação será realizada com Backup ou Base Zerada?</p>
 
               <input
                 type="radio"
                 name="backup"
-                value="Sim"
+                value="Backup"
                 onChange={(e) => setBackup(e.target.value)}
               />
-              <label>Sim</label>
+              <label>Backup</label>
               <input
                 type="radio"
                 name="backup"
-                value="Não"
+                value="Base Zerada"
                 onChange={(e) => setBackup(e.target.value)}
               />
-              <label>Não</label>
+              <label>Base Zerada</label>
             </div>
 
             <div className="pergunta">
