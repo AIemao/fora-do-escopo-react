@@ -569,6 +569,13 @@ export default function InstalacaoForm() {
                 onChange={(e) => setBackup(e.target.value)}
               />
               <label>Base Zerada</label>
+              <input
+                type="radio"
+                name="backup"
+                value="Não será feita instalação de SERVIDOR"
+                onChange={(e) => setBackup(e.target.value)}
+              />
+              <label>Não será feita instalação de SERVIDOR</label>
             </div>
 
             <div className="pergunta">
