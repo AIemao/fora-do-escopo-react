@@ -1,0 +1,22 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: auto;
+  width: auto;
+  position: relative;
+}
+
+.menu h1 {
+  text-align: center;
+  padding-top: 10px;
+  font-family: Dosis;
+  color: #fff;
+  font-weight: bold;
+}
+
+.menu img {
+  position: absolute;
+  right: 40px;
+}

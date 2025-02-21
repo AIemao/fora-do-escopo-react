@@ -1,0 +1,31 @@
+.buttonContainer {
+  margin-top: 20px; /* Ajuste conforme necessário */
+  text-align: center;
+  width: 95%; /* Faz com que a div ocupe toda a largura disponível */
+}
+
+.processButton,
+.resetButton,
+.sendButton {
+  width: calc(
+    100% / 3 - 20px
+  ); /* Divide igualmente em 3 partes, ajuste conforme necessário */
+  box-sizing: border-box; /* Inclui padding e borda na largura total */
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.processButton {
+  background-color: #bb60da; /* Use a cor média ou escura, conforme necessário */
+}
+
+.resetButton {
+  background-color: #9546af; /* Use a cor média ou escura, conforme necessário */
+}
+
+.sendButton {
+  background-color: #501070; /* Use a cor escura, conforme necessário */
+}

@@ -1,123 +1,28 @@
 .interface {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin-top: 5px;
-  width: auto;
-  height: auto;
+  width: 100vw;
+  height: 100vh;
 }
 
 .form {
   /* background: #b0a4b9; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  width: 90%;
   color: #fff;
-  font-family: Dosis;
-  font-size: 15pt;
+  font-family: Roboto;
+  font-size: 16px;
 }
 
-.fieldset {
-  padding-top: 20px;
-  border: solid 3px #fff;
-  margin: 5px;
+table,
+th,
+td {
+  border-radius: 6px;
 }
-
-.legend{
-  float: left;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 0.5rem;
-  line-height: inherit;
-}
-
-.tablehead {
-  /* background: #af9bb6;
-  width: 1400px;
-  margin: auto;
-  margin-top: 5px;
-  margin-bottom: 5px; */
-  background-color: #d13a9f;
-    color: #FFF;
-    text-align: justify;
-}
-
-.tablelight {
-  background-color: #5a344d;
-  color: #FFF;
-  text-align: justify;
-  --bs-table-accent-bg: var(--bs-table-striped-bg);
-}
-
-
-.tablestriped{
-  /* background: #AF9BB6; */
-	width: 1400px;
-	margin: auto;
-	margin-top: 5px;
-	margin-bottom: 5px;
-
-  --bs-table-bg: transparent;
-  --bs-table-striped-color: #212529;
-  --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
-  --bs-table-active-color: #212529;
-  --bs-table-active-bg: rgba(0, 0, 0, 0.1);
-  --bs-table-hover-color: #212529;
-  --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
-  width: 100%;
-  margin-bottom: 1rem;
-  color: #212529;
-  vertical-align: top;
-  border-color: #dee2e6;
-}
-
-.inputText {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-.tabledanger {
-  --bs-table-accent-bg: var(--bs-table-striped-bg);
-    color: rgb(255, 255, 255);
-}
-
-.descricaoServico {
-  text-align: left !important; /* Alinha à esquerda, usando !important para garantir prioridade */
-}
-
- .buttonContainer {
-    margin-top: 20px; /* Ajuste conforme necessário */
-    text-align: center;
-    width: 100%; /* Faz com que a div ocupe toda a largura disponível */
-  }
-  
-  .processButton,
-  .resetButton,
-  .envioButton {
-    width: calc(100% / 3 - 20px); /* Divide igualmente em 3 partes, ajuste conforme necessário */
-    box-sizing: border-box; /* Inclui padding e borda na largura total */
-    margin: 0 10px;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  .processButton {
-    background-color: #bb60da; /* Use a cor média ou escura, conforme necessário */
-  }
-  
-  .resetButton {
-    background-color: #9546af; /* Use a cor média ou escura, conforme necessário */
-  }
-  
-  .envioButton {
-    background-color: #501070; /* Use a cor escura, conforme necessário */
-  }
-
-  td,
-th {
-    border: 1px solid #000000; /* Linha preta */
-    text-align: center; /* Centraliza o texto por padrão */
-  }
-
-  
-
-  
