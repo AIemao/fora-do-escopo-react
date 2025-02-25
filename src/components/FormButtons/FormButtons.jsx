@@ -1,4 +1,4 @@
-import style from "./FormButtons.modules.css";
+import style from "./FormButtons.modules.css?inline";
 
 export default function FormButtons({
   handleOpenModal,
