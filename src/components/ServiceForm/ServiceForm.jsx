@@ -1,23 +1,23 @@
+import FormButtons from "../FormButtons/FormButtons";
 import style from "./ServiceForm.module.css";
 
-export default function ServiceForm({ items, handleQuantityChange, total }) {
+export default function ServiceForm({ items, handleQuantityChange, total, handleOpenModal, handleReset, handleOpenEnvioInformacaoModal }) {
   return (
-    <table className={style.tablestriped}>
-      <thead className={style.tablehead}>
-        <tr>
-          <th scope="col">Descrição do Serviço Fora do Escopo</th>
-          <th scope="col">Valor</th>
-          <th scope="col">Quantidade</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div className={style.grid_container}>
+      <div className={style.grid_container_header}>
+        <h3>Descrição do Serviço Fora do Escopo</h3>
+        <div >Valor</div>
+        <div >Quantidade</div>
+        <div >Total</div>
+      </div>
+
+      <div >
         {items.map((item) => (
-          <tr
+          <div
             key={item.id}
-            className={item.id % 2 === 0 ? style.tabledanger : style.tablelight}
+            className={style.grid_container_body}
           >
-            <td>
+            <div >
               <input
                 type="checkbox"
                 name={`n_item${item.id}`}
@@ -30,11 +30,12 @@ export default function ServiceForm({ items, handleQuantityChange, total }) {
               <label className="txt" htmlFor={`inf${item.id}`}>
                 {item.label}
               </label>
-            </td>
-            <td className={`linha${item.id % 2 === 0 ? "02" : "01"}`}>
+            </div>
+
+            <div className={style.grid_product_values}>
               R$: {item.value}
-            </td>
-            <td className={`linha${item.id % 2 === 0 ? "02" : "01"}`}>
+            </div>
+            <div className={style.grid_product_values}>
               <input
                 className={`linha${item.id % 2 === 0 ? "02" : "01"}`}
                 type="number"
@@ -45,30 +46,29 @@ export default function ServiceForm({ items, handleQuantityChange, total }) {
                   handleQuantityChange(item.id, parseInt(e.target.value))
                 }
               />
-            </td>
-            <td className={`linha${item.id % 2 === 0 ? "02" : "01"}`}>
+            </div>
+            <div className={style.grid_product_values}>
               R$: {item.value * item.quantity}
-            </td>
-          </tr>
+            </div>
+          </div>
         ))}
-        <tr className="table-light">
-          <th scope="row"></th>
-          <td className="vazio"></td>
-          <td className="padrao">
-            <label className="txt">Total:</label>
-          </td>
-          <td className="linha02">
+          <div className={style.container_total_price}>
+            <p>Total geral:</p>
+          
             <input
-              className="linha02"
               value={total}
               type="number"
-              id="total"
               readOnly
               disabled
             />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+      </div>
+
+      <FormButtons
+          handleOpenModal={handleOpenModal}
+          handleReset={handleReset}
+          handleOpenEnvioInformacaoModal={handleOpenEnvioInformacaoModal}
+        />
+    </div>
   );
 }
