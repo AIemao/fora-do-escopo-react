@@ -12,7 +12,7 @@
     border-radius: 16px;
     filter: drop-shadow(2px 2px 2px #000000);
 
-    background-color: #f67b21;
+    background-color: #f67a21eb;
     color: #fff;
     font-weight: bold;
 }
@@ -23,8 +23,8 @@
     border-radius: 16px;
     filter: drop-shadow(2px 2px 2px #000000);
 
-    background-color: #FFF;
-    color: #f67b21;
+    background-color: #8f8f8fbe;
+    color: #fff;
     font-weight: bold;
 }
 
@@ -34,7 +34,7 @@
     border-radius: 16px;
     filter: drop-shadow(2px 2px 2px #000000);
 
-    background-color: #411e5a;
+    background-color: #411e5adf;
     color: #fff;
     font-weight: bold;
 }
