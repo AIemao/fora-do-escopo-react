@@ -6,7 +6,7 @@ export default function TpInfo({ tpValue, setTpValue }) {
       <legend className={style.legend}>Preencha os campos:</legend>
 
       <div>
-        <label htmlFor="tp">TP: </label>
+        <label htmlFor="tp" className={style.fieldset_label}>TP:</label>
         <input
           type="text"
           id="tp"

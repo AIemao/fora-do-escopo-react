@@ -9,12 +9,17 @@
   background-color: #fefefe;
 }
 
+.fieldset_label{
+  font-weight: bold;
+}
+
 .legend {
   float: left;
   width: 100%;
   padding: 0;
   margin-bottom: 24px;
   line-height: inherit;
+  font-weight: bold;
 }
 
 .inputText {
