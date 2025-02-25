@@ -1,4 +1,4 @@
-import style from "./FormButtons.modules.css?inline";
+import style from "./FormButtons.module.css"
 
 export default function FormButtons({
   handleOpenModal,
@@ -6,28 +6,29 @@ export default function FormButtons({
   handleOpenEnvioInformacaoModal,
 }) {
   return (
-    <div className={style.buttonContainer}>
+    <div className={style.container_buttons}>
       <button
         type="submit"
-        className={style.processButton}
         id="processar"
         onClick={handleOpenModal}
+        className={style.button_process}
       >
         Processar
       </button>
       <button
         type="button"
-        className={style.resetButton}
         id="reset"
         onClick={handleReset}
+        className={style.button_reset}
+
       >
         Reset
       </button>
 
       <button
         type="button"
-        className={style.sendButton}
         onClick={handleOpenEnvioInformacaoModal}
+        className={style.button_send}
       >
         Envio de Informação
       </button>
