@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import FormButtons from "../components/FormButtons/FormButtons";
 import ModalConfigInfo from "../components/ModalConfigInfo/ModalConfigInfo";
 import ModalMailSend from "../components/ModalMailSend/ModalMailSend";
 import ServiceForm from "../components/ServiceForm/ServiceForm";
@@ -33,6 +32,9 @@ export default function InstalacaoForm() {
     },
     { id: 8, label: "PAINEL DE SENHA", value: 240.0, quantity: 0 },
     { id: 9, label: "KDS", value: 240.0, quantity: 0 },
+    { id: 10, label: "TASTE ONE - SERVIDOR + TERMINAL (FÍSICO)", value: 480.0, quantity: 0 },
+    { id: 11, label: "TASTE ONE - SERVIDOR/TERMINAL (CLOUD)", value: 240.0, quantity: 0 },
+    { id: 12, label: "DEGUST ONE - TREINAMENTO (HORA)", value: 240.0, quantity: 0 },
   ]);
   const [, setSelectedItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -330,6 +332,9 @@ export default function InstalacaoForm() {
       },
       { id: 8, label: "PAINEL DE SENHA", value: 240.0, quantity: 0 },
       { id: 9, label: "KDS", value: 240.0, quantity: 0 },
+      { id: 10, label: "TASTE ONE - SERVIDOR + TERMINAL (FÍSICO)", value: 480.0, quantity: 0 },
+      { id: 11, label: "TASTE ONE - SERVIDOR/TERMINAL (CLOUD)", value: 240.0, quantity: 0 },
+      { id: 12, label: "DEGUST ONE - TREINAMENTO (HORA)", value: 240.0, quantity: 0 },
     ]);
     const resetItems = items.map((item) => ({ ...item, quantity: 0 }));
     setItems(resetItems);
@@ -365,8 +370,6 @@ export default function InstalacaoForm() {
           items={items}
           handleQuantityChange={handleQuantityChange}
           total={total}
-        />
-        <FormButtons
           handleOpenModal={handleOpenModal}
           handleReset={handleReset}
           handleOpenEnvioInformacaoModal={handleOpenEnvioInformacaoModal}
