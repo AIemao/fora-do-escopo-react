@@ -6,6 +6,8 @@
 
   height: auto;
   position: relative;
+
+  background: linear-gradient(90deg, rgba(118, 44, 172, 0.9) 90%, rgba(185, 127, 227, 0.9) 90%, rgba(118, 44, 172, 0.9) 90%), url("../../assets/background-img.png");
 }
 
 .menu h1 {
