@@ -87,11 +87,14 @@ export default function InstalacaoForm() {
   const processar = () => {
     if (tpValue === "") {
       alert("Informe o número da TP");
+      return
     } else {
       if (validaSelecao() === false) {
         setModalVisible(false);
         alert("Selecione uma opção!");
       } else {
+        setModalVisible(true);
+
         if (validaQtd() > 0) {
           setModalVisible(false);
           alert("Informe a Quantidade!");
@@ -270,11 +273,10 @@ export default function InstalacaoForm() {
 
     Impressoras Remotas? 
     ${impressorasRemotas}
-    ${
-      impressorasRemotas === "Sim"
+    ${impressorasRemotas === "Sim"
         ? `Marca/Modelo Impressoras Remotas: ${marcaModeloImpressorasRemotas}`
         : ""
-    }
+      }
 
     Loja tem PIN PAD? 
     ${pinPad}
@@ -282,23 +284,23 @@ export default function InstalacaoForm() {
 
     Existe mais algum equipamento conectado à máquina? 
     ${equipamentoConectado}
-    ${
-      equipamentoConectado === "Sim"
+    ${equipamentoConectado === "Sim"
         ? `Marca/Modelo Equipamento Conectado: ${marcaModeloEquipamentoConectado}`
         : ""
-    }
+      }
     `;
 
     // Copie o texto para a área de transferência
     navigator.clipboard.writeText(answersText).then(() => {
       alert("Respostas copiadas para a área de transferência!");
     });
+
+    setModalVisible(false)
   };
 
   const handleOpenModal = () => {
     console.log("Opening copyAnswersModalVisible modal");
     processar();
-    setModalVisible(true);
   };
 
   const handleOpenEnvioInformacaoModal = () => {
