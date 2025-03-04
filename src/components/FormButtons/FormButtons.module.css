@@ -10,21 +10,21 @@
     padding: 8px 16px;
     border: none;
     border-radius: 16px;
-    filter: drop-shadow(2px 2px 2px #000000);
+    filter: drop-shadow(1px 1px 1px #000000);
 
-    background-color: #f67a21eb;
+    background-color: #411e5adf;
     color: #fff;
     font-weight: bold;
 }
 
 .button_reset {
     padding: 8px 16px;
-    border: none;
+    border: 1px solid #411e5adf;
     border-radius: 16px;
-    filter: drop-shadow(2px 2px 2px #000000);
+    filter: drop-shadow(1px 1px 1px #000000);
 
-    background-color: #8f8f8fbe;
-    color: #fff;
+    background-color: #fff;
+    color: #411e5adf;
     font-weight: bold;
 }
 
@@ -32,9 +32,9 @@
     padding: 8px 16px;
     border: none;
     border-radius: 16px;
-    filter: drop-shadow(2px 2px 2px #000000);
+    filter: drop-shadow(1px 1px 1px #000000);
 
-    background-color: #411e5adf;
+    background-color: #f67a21eb;
     color: #fff;
     font-weight: bold;
 }
