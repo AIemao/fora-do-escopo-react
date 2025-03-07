@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import style from "./ModalConfigInfo.module.css"
+import style from "./ModalConfigInfo.module.css";
 
 export default function ModalConfigInfo({
   modalVisible,
@@ -11,7 +11,9 @@ export default function ModalConfigInfo({
   setQuantidadePDVs,
   setQuantidadePDVsInstalados,
   setNumeroPDVInstalado,
+  emissorCupom,
   setEmissorCupom,
+  setSatCode,
   setMarcaModeloEmissorCupom,
   setImpressorasRemotas,
   setMarcaModeloImpressorasRemotas,
@@ -34,10 +36,12 @@ export default function ModalConfigInfo({
       {/* Conteúdo do modal */}
       <h2>Preencha as perguntas:</h2>
       <form>
-        <div>
-          <strong>A instalação será realizada com Backup ou Base Zerada?</strong>
+        <div className={style.container_question}>
+          <strong>
+            1- A instalação será realizada com Backup ou Base Zerada?
+          </strong>
 
-          <div className={style.container_question}>
+          <div className={style.container_input}>
             <label>
               <input
                 type="radio"
@@ -68,10 +72,10 @@ export default function ModalConfigInfo({
           </div>
         </div>
 
-        <div >
-          <strong>A loja utiliza Mobile?</strong>
+        <div className={style.container_question}>
+          <strong>2- A loja utiliza Mobile?</strong>
 
-          <div className={style.container_question}>
+          <div className={style.container_input}>
             <label>
               <input
                 type="radio"
@@ -94,10 +98,10 @@ export default function ModalConfigInfo({
           </div>
         </div>
 
-        <div >
-          <strong>A loja utiliza Auto Atendimento ONE?</strong>
+        <div className={style.container_question}>
+          <strong>3- A loja utiliza Auto Atendimento ONE?</strong>
 
-          <div className={style.container_question}>
+          <div className={style.container_input}>
             <div>
               <input
                 type="radio"
@@ -107,8 +111,7 @@ export default function ModalConfigInfo({
               />
               <label>Sim</label>
             </div>
-            <div>
-            </div>
+            <div></div>
             <div>
               <input
                 type="radio"
@@ -122,9 +125,9 @@ export default function ModalConfigInfo({
         </div>
 
         <div className={style.container_question}>
-          <strong>Loja está parada?</strong>
+          <strong>4- Loja está parada?</strong>
 
-          <div className={style.container_question}>
+          <div className={style.container_input}>
             <div>
               <input
                 type="radio"
@@ -143,13 +146,11 @@ export default function ModalConfigInfo({
               />
               <label>Não</label>
             </div>
-
           </div>
-
         </div>
 
         <div className={style.container_question}>
-          <strong>Quantos PDVs a loja possui?</strong>
+          <strong>5- Quantos PDVs a loja possui?</strong>
           <input
             type="number"
             name="quantidadePDVs"
@@ -161,7 +162,7 @@ export default function ModalConfigInfo({
         </div>
 
         <div className={style.container_question}>
-          <strong>Quantos PDVs serão instalados?</strong>
+          <strong>6- Quantos PDVs serão instalados?</strong>
           <input
             type="number"
             name="quantidadePDVsInstalados"
@@ -173,7 +174,7 @@ export default function ModalConfigInfo({
         </div>
 
         <div className={style.container_question}>
-          <strong>Qual o número do PDV que será instalado?</strong>
+          <strong>7- Qual o número do PDV que será instalado?</strong>
           <input
             type="text"
             name="numeroPDVInstalado"
@@ -184,38 +185,54 @@ export default function ModalConfigInfo({
         </div>
 
         <div className={style.container_question}>
-          <strong>Qual é o emissor de cupom utilizado (S@T, NFCE, ECF)?</strong>
-          <div>
-            <input
-              type="radio"
-              name="emissorCupom"
-              value="S@T"
-              onChange={(e) => setEmissorCupom(e.target.value)}
-            />
-            <label>S@T</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="emissorCupom"
-              value="NFCE"
-              onChange={(e) => setEmissorCupom(e.target.value)}
-            />
-            <label>NFC-e</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="emissorCupom"
-              value="ECF"
-              onChange={(e) => setEmissorCupom(e.target.value)}
-            />
-            <label>ECF</label>
+          <strong>
+            8- Qual é o emissor de cupom utilizado (S@T, NFCE, ECF)?
+          </strong>
+
+          <div className={style.container_input}>
+            <div>
+              <input
+                type="radio"
+                name="emissorCupom"
+                value="S@T"
+                onChange={(e) => setEmissorCupom(e.target.value)}
+              />
+              <label>S@T</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="emissorCupom"
+                value="NFCE"
+                onChange={(e) => setEmissorCupom(e.target.value)}
+              />
+              <label>NFC-e</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="emissorCupom"
+                value="ECF"
+                onChange={(e) => setEmissorCupom(e.target.value)}
+              />
+              <label>ECF</label>
+            </div>
+
+            {emissorCupom === "S@T" && (
+              <input
+                type="text"
+                name="satCode"
+                onChange={(e) => setSatCode(e.target.value)}
+                placeholder="Informe o código de ativação."
+              />
+            )}
           </div>
         </div>
 
         <div className={style.container_question}>
-          <strong>Qual é a marca e modelo do emissor de cupom (DANFE)?</strong>
+          <strong>
+            9- Qual é a marca e modelo do emissor de cupom (DANFE)?
+          </strong>
           <input
             type="text"
             name="marcaModeloEmissorCupom"
@@ -226,107 +243,127 @@ export default function ModalConfigInfo({
         </div>
 
         <div className={style.container_question}>
-          <strong>Impressoras Remotas?</strong>
-          <div>
-            <input
-              type="radio"
-              name="impressorasRemotas"
-              value="Sim"
-              onChange={(e) => setImpressorasRemotas(e.target.value)}
-            />
-            <label>Sim</label>
+          <strong>10- Impressoras Remotas?</strong>
+
+          <div className={style.container_input}>
+            <div>
+              <input
+                type="radio"
+                name="impressorasRemotas"
+                value="Sim"
+                onChange={(e) => setImpressorasRemotas(e.target.value)}
+              />
+              <label>Sim</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="impressorasRemotas"
+                value="Não"
+                onChange={(e) => setImpressorasRemotas(e.target.value)}
+              />
+              <label>Não</label>
+            </div>
+
+            {impressorasRemotas === "Sim" && (
+              <input
+                type="text"
+                name="marcaModeloImpressorasRemotas"
+                onChange={(e) =>
+                  setMarcaModeloImpressorasRemotas(e.target.value)
+                }
+                placeholder="Informe a marca e modelo"
+              />
+            )}
           </div>
-          <div>
-            <input
-              type="radio"
-              name="impressorasRemotas"
-              value="Não"
-              onChange={(e) => setImpressorasRemotas(e.target.value)}
-            />
-            <label>Não</label>
-          </div>
-          <br />
-          {impressorasRemotas === "Sim" && (
-            <input
-              type="text"
-              name="marcaModeloImpressorasRemotas"
-              onChange={(e) => setMarcaModeloImpressorasRemotas(e.target.value)}
-              placeholder="Informe a marca e modelo"
-            />
-          )}
         </div>
 
         <div className={style.container_question}>
-          <strong>Loja tem PIN PAD?</strong>
-          <div>
-            <input
-              type="radio"
-              name="pinPad"
-              value="Sim"
-              onChange={(e) => setPinPad(e.target.value)}
-            />
-            <label>Sim</label>
+          <strong>11- Loja tem PIN PAD?</strong>
+
+          <div className={style.container_input}>
+            <div>
+              <input
+                type="radio"
+                name="pinPad"
+                value="Sim"
+                onChange={(e) => setPinPad(e.target.value)}
+              />
+              <label>Sim</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="pinPad"
+                value="Não"
+                onChange={(e) => setPinPad(e.target.value)}
+              />
+              <label>Não</label>
+            </div>
+            {pinPad === "Sim" && (
+              <input
+                type="text"
+                name="marcaModeloPinPad"
+                onChange={(e) => setMarcaModeloPinPad(e.target.value)}
+                placeholder="Informe a marca e modelo"
+              />
+            )}
           </div>
-          <div>
-            <input
-              type="radio"
-              name="pinPad"
-              value="Não"
-              onChange={(e) => setPinPad(e.target.value)}
-            />
-            <label>Não</label>
-          </div>
-          <br />
-          {pinPad === "Sim" && (
-            <input
-              type="text"
-              name="marcaModeloPinPad"
-              onChange={(e) => setMarcaModeloPinPad(e.target.value)}
-              placeholder="Informe a marca e modelo"
-            />
-          )}
         </div>
 
         <div className={style.container_question}>
-          <strong>Existe mais algum equipamento conectado à máquina?</strong>
-          <div>
-            <input
-              type="radio"
-              name="equipamentoConectado"
-              value="Sim"
-              onChange={(e) => setEquipamentoConectado(e.target.value)}
-            />
-            <label>Sim</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="equipamentoConectado"
-              value="Não"
-              onChange={(e) => setEquipamentoConectado(e.target.value)}
-            />
-            <label>Não</label>
-          </div>
+          <strong>
+            12- Existe mais algum equipamento conectado à máquina?
+          </strong>
 
-          {equipamentoConectado === "Sim" && (
-            <input
-              type="text"
-              name="marcaModeloEquipamentoConectado"
-              onChange={(e) =>
-                setMarcaModeloEquipamentoConectado(e.target.value)
-              }
-              placeholder="Informe a marca e modelo"
-            />
-          )}
+          <div className={style.container_input}>
+            <div>
+              <input
+                type="radio"
+                name="equipamentoConectado"
+                value="Sim"
+                onChange={(e) => setEquipamentoConectado(e.target.value)}
+              />
+              <label>Sim</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="equipamentoConectado"
+                value="Não"
+                onChange={(e) => setEquipamentoConectado(e.target.value)}
+              />
+              <label>Não</label>
+            </div>
+
+            {equipamentoConectado === "Sim" && (
+              <input
+                type="text"
+                name="marcaModeloEquipamentoConectado"
+                onChange={(e) =>
+                  setMarcaModeloEquipamentoConectado(e.target.value)
+                }
+                placeholder="Informe a marca e modelo"
+              />
+            )}
+          </div>
         </div>
 
-
-        <button type="button" onClick={handleCopyAnswers} className={style.button_copy}>
+        <button
+          type="button"
+          onClick={handleCopyAnswers}
+          className={style.button_copy}
+        >
           Copiar Respostas
         </button>
         <br />
 
-        <button onClick={() => setModalVisible(false)} className={style.button_close}>Fechar</button>
+        <button
+          onClick={() => setModalVisible(false)}
+          className={style.button_close}
+        >
+          Fechar
+        </button>
       </form>
     </Modal>
   );

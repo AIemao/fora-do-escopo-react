@@ -32,9 +32,24 @@ export default function InstalacaoForm() {
     },
     { id: 8, label: "PAINEL DE SENHA", value: 240.0, quantity: 0 },
     { id: 9, label: "KDS", value: 240.0, quantity: 0 },
-    { id: 10, label: "TASTE ONE - SERVIDOR + TERMINAL (FÍSICO)", value: 480.0, quantity: 0 },
-    { id: 11, label: "TASTE ONE - SERVIDOR/TERMINAL (CLOUD)", value: 240.0, quantity: 0 },
-    { id: 12, label: "DEGUST ONE - TREINAMENTO (HORA)", value: 240.0, quantity: 0 },
+    {
+      id: 10,
+      label: "TASTE ONE - SERVIDOR + TERMINAL (FÍSICO)",
+      value: 480.0,
+      quantity: 0,
+    },
+    {
+      id: 11,
+      label: "TASTE ONE - SERVIDOR/TERMINAL (CLOUD)",
+      value: 240.0,
+      quantity: 0,
+    },
+    {
+      id: 12,
+      label: "DEGUST ONE - TREINAMENTO (HORA)",
+      value: 240.0,
+      quantity: 0,
+    },
   ]);
   const [, setSelectedItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -57,6 +72,7 @@ export default function InstalacaoForm() {
   const [quantidadePDVsInstalados, setQuantidadePDVsInstalados] = useState("");
   const [numeroPDVInstalado, setNumeroPDVInstalado] = useState("");
   const [emissorCupom, setEmissorCupom] = useState("");
+  const [satCode, setSatCode] = useState(null);
   const [marcaModeloEmissorCupom, setMarcaModeloEmissorCupom] = useState("");
   const [impressorasRemotas, setImpressorasRemotas] = useState("");
   const [marcaModeloImpressorasRemotas, setMarcaModeloImpressorasRemotas] =
@@ -87,7 +103,7 @@ export default function InstalacaoForm() {
   const processar = () => {
     if (tpValue === "") {
       alert("Informe o número da TP");
-      return
+      return;
     } else {
       if (validaSelecao() === false) {
         setModalVisible(false);
@@ -244,50 +260,65 @@ export default function InstalacaoForm() {
   const handleCopyAnswers = () => {
     // Crie um objeto com todas as respostas
     const answersText = `
-    A instalação será realizada com Backup ou Base Zerada? 
+    1- A instalação será realizada com Backup ou Base Zerada?
     ${backup}
-    
-    A loja utiliza Mobile (Tablet)? 
+
+    2- A loja utiliza Mobile (Tablet)?
     ${mobile}
 
-    A loja utiliza Auto Atendimento ONE? 
+    3- A loja utiliza Auto Atendimento ONE?
     ${AA}
 
-    Loja está parada? 
+    4- Loja está parada?
     ${lojaParada}
 
-    Quantos PDVs a loja possui? 
+    5- Quantos PDVs a loja possui?
     ${quantidadePDVs}
 
-    Quantos PDVs serão instalados? 
+    6- Quantos PDVs serão instalados?
     ${quantidadePDVsInstalados}
 
-    Qual o número do PDV que será instalado? 
+    7- Qual o número do PDV que será instalado?
     ${numeroPDVInstalado}
 
-    Qual é o emissor de cupom utilizado (S@T, NFCE, ECF)? 
+    8- Qual é o emissor de cupom utilizado (S@T, NFCE, ECF)?
     ${emissorCupom}
 
-    Qual é a marca e modelo do emissor de cupom (DANFE)? 
+    ${
+      satCode &&
+      `Código de ativação:
+    ${satCode}`
+    }
+
+    9- Qual é a marca e modelo do emissor de cupom (DANFE)?
     ${marcaModeloEmissorCupom}
 
-    Impressoras Remotas? 
+    10- Impressoras Remotas?
     ${impressorasRemotas}
-    ${impressorasRemotas === "Sim"
-        ? `Marca/Modelo Impressoras Remotas: ${marcaModeloImpressorasRemotas}`
-        : ""
-      }
 
-    Loja tem PIN PAD? 
+    ${
+      impressorasRemotas === "Sim" &&
+      `Marca/Modelo Impressoras Remotas:
+    ${marcaModeloImpressorasRemotas}`
+    }
+
+    11- Loja tem PIN PAD?
     ${pinPad}
-    ${pinPad === "Sim" ? `Marca/Modelo PIN PAD: ${marcaModeloPinPad}` : ""}
 
-    Existe mais algum equipamento conectado à máquina? 
+    ${
+      pinPad === "Sim" &&
+      `Marca/Modelo PIN PAD:
+    ${marcaModeloPinPad}`
+    }
+
+    12- Existe mais algum equipamento conectado à máquina?
     ${equipamentoConectado}
-    ${equipamentoConectado === "Sim"
-        ? `Marca/Modelo Equipamento Conectado: ${marcaModeloEquipamentoConectado}`
-        : ""
-      }
+
+    ${
+      equipamentoConectado === "Sim" &&
+      `Marca/Modelo Equipamento Conectado:
+    ${marcaModeloEquipamentoConectado}`
+    }
     `;
 
     // Copie o texto para a área de transferência
@@ -295,7 +326,7 @@ export default function InstalacaoForm() {
       alert("Respostas copiadas para a área de transferência!");
     });
 
-    setModalVisible(false)
+    setModalVisible(false);
   };
 
   const handleOpenModal = () => {
@@ -334,9 +365,24 @@ export default function InstalacaoForm() {
       },
       { id: 8, label: "PAINEL DE SENHA", value: 240.0, quantity: 0 },
       { id: 9, label: "KDS", value: 240.0, quantity: 0 },
-      { id: 10, label: "TASTE ONE - SERVIDOR + TERMINAL (FÍSICO)", value: 480.0, quantity: 0 },
-      { id: 11, label: "TASTE ONE - SERVIDOR/TERMINAL (CLOUD)", value: 240.0, quantity: 0 },
-      { id: 12, label: "DEGUST ONE - TREINAMENTO (HORA)", value: 240.0, quantity: 0 },
+      {
+        id: 10,
+        label: "TASTE ONE - SERVIDOR + TERMINAL (FÍSICO)",
+        value: 480.0,
+        quantity: 0,
+      },
+      {
+        id: 11,
+        label: "TASTE ONE - SERVIDOR/TERMINAL (CLOUD)",
+        value: 240.0,
+        quantity: 0,
+      },
+      {
+        id: 12,
+        label: "DEGUST ONE - TREINAMENTO (HORA)",
+        value: 240.0,
+        quantity: 0,
+      },
     ]);
     const resetItems = items.map((item) => ({ ...item, quantity: 0 }));
     setItems(resetItems);
@@ -389,7 +435,9 @@ export default function InstalacaoForm() {
           setQuantidadePDVs={setQuantidadePDVs}
           setQuantidadePDVsInstalados={setQuantidadePDVsInstalados}
           setNumeroPDVInstalado={setNumeroPDVInstalado}
+          emissorCupom={emissorCupom}
           setEmissorCupom={setEmissorCupom}
+          setSatCode={setSatCode}
           setMarcaModeloEmissorCupom={setMarcaModeloEmissorCupom}
           setImpressorasRemotas={setImpressorasRemotas}
           setMarcaModeloImpressorasRemotas={setMarcaModeloImpressorasRemotas}
