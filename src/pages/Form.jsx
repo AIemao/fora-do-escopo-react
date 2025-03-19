@@ -101,38 +101,25 @@ export default function InstalacaoForm() {
   };
 
   const processar = () => {
-    if (tpValue === "") {
-      alert("Informe o número da TP");
-      return;
+    setModalVisible(true)
+    processaForaEscopo();
+
+    // Define o TP e o Total em estado
+    setTpValue(tpValue);
+    setTotal(total);
+
+    // Verifica as condições para mostrar o modal ou montar o email
+    if (
+      (items[0].quantity > 0 && items[0].quantity > 0) ||
+      (items[1].quantity > 0 && items[1].quantity > 0)
+    ) {
+      setModalVisible(true);
     } else {
-      if (validaSelecao() === false) {
-        setModalVisible(false);
-        alert("Selecione uma opção!");
-      } else {
-        setModalVisible(true);
-
-        if (validaQtd() > 0) {
-          setModalVisible(false);
-          alert("Informe a Quantidade!");
-        } else {
-          processaForaEscopo();
-
-          // Define o TP e o Total em estado
-          setTpValue(tpValue);
-          setTotal(total);
-
-          // Verifica as condições para mostrar o modal ou montar o email
-          if (
-            (items[0].quantity > 0 && items[0].quantity > 0) ||
-            (items[1].quantity > 0 && items[1].quantity > 0)
-          ) {
-            setModalVisible(true);
-          } else {
-            montaEmail();
-          }
-        }
-      }
+      montaEmail();
     }
+    // }
+    //   }
+    // }
   };
 
   function processaForaEscopo() {
@@ -260,7 +247,7 @@ export default function InstalacaoForm() {
   const handleCopyAnswers = () => {
     // Crie um objeto com todas as respostas
     const answersText = `
-    1- A instalação será realizada com Backup ou Base Zerada?
+    1- A instalação será realizada em um Terminal ou Servidor? Se for servidor, com backup ou sem dados?
     ${backup}
 
     2- A loja utiliza Mobile (Tablet)?
@@ -284,41 +271,37 @@ export default function InstalacaoForm() {
     8- Qual é o emissor de cupom utilizado (S@T, NFCE, ECF)?
     ${emissorCupom}
 
-    ${
-      satCode &&
-      `Código de ativação:
-    ${satCode}`
-    }
+    ${satCode ?
+        `Código de ativação:
+    ${satCode}` : ""
+      }
 
-    9- Qual é a marca e modelo do emissor de cupom (DANFE)?
+    9- Qual é a marca e modelo da impressora de Cupom Fiscal (DANFE)?
     ${marcaModeloEmissorCupom}
 
     10- Impressoras Remotas?
     ${impressorasRemotas}
 
-    ${
-      impressorasRemotas === "Sim" &&
-      `Marca/Modelo Impressoras Remotas:
-    ${marcaModeloImpressorasRemotas}`
-    }
+    ${impressorasRemotas === "Sim" ?
+        `Marca/Modelo Impressoras Remotas:
+    ${marcaModeloImpressorasRemotas}` : ""
+      }
 
     11- Loja tem PIN PAD?
     ${pinPad}
 
-    ${
-      pinPad === "Sim" &&
-      `Marca/Modelo PIN PAD:
-    ${marcaModeloPinPad}`
-    }
+    ${pinPad === "Sim" ?
+        `Marca/Modelo PIN PAD:
+    ${marcaModeloPinPad}` : ""
+      }
 
     12- Existe mais algum equipamento conectado à máquina?
     ${equipamentoConectado}
 
-    ${
-      equipamentoConectado === "Sim" &&
-      `Marca/Modelo Equipamento Conectado:
-    ${marcaModeloEquipamentoConectado}`
-    }
+    ${equipamentoConectado === "Sim" ?
+        `Marca/Modelo Equipamento Conectado:
+    ${marcaModeloEquipamentoConectado}` : ""
+      }
     `;
 
     // Copie o texto para a área de transferência
@@ -335,6 +318,23 @@ export default function InstalacaoForm() {
   };
 
   const handleOpenEnvioInformacaoModal = () => {
+    if (tpValue === "") {
+      alert("Informe o número da TP");
+      return;
+    }
+
+    if (validaSelecao() === false) {
+      alert("Selecione uma opção!");
+      return;
+    }
+
+
+    if (validaQtd() > 0) {
+      setModalVisible(false);
+      alert("Informe a Quantidade!");
+      return;
+    }
+
     console.log("Opening envioInformacaoModalVisible modal");
     setEnvioInformacaoModalVisible(true);
   };
@@ -404,6 +404,12 @@ export default function InstalacaoForm() {
     setEquipamentoConectado("");
     setMarcaModeloEquipamentoConectado("");
     setCheckboxVisibility(Array(items.length).fill(true));
+
+    for (let i = 0; i < 12; i++) {
+      const inputCheckBoxId = `inf${i}`
+      const inputElementSelected = document.getElementById(inputCheckBoxId)
+      console.log(inputElementSelected)
+    }
   };
 
   return (

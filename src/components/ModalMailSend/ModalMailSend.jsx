@@ -16,15 +16,16 @@ export default function ModalMailSend({
       ariaHideApp={false}
     >
       <div className={style.modal}>
-        <div style={{ "font-family": "Calibri sans-serif" }}>
-          <span
-            className="close"
-            onClick={() => setEnvioInformacaoModalVisible(false)}
-          >
-            &times;
-          </span>
+        <span
+          className={style.close}
+          onClick={() => setEnvioInformacaoModalVisible(false)}
+        >
+          &times;
+        </span>
+        <div id="container_text" >
           <h2>SERVIÇO FORA DE ESCOPO - LINX</h2>
-          <p style={{ "font-size": "11pt" }}>
+
+          <p className={style.base_text}>
             Prezado Cliente,
             <br />
             Com base no catálogo de serviços fora do escopo padrão de suporte,
@@ -35,39 +36,39 @@ export default function ModalMailSend({
             do procedimento.
           </p>
 
-          <h3>INFORMAÇÕES DO CLIENTE:</h3>
-          <div style={{ "font-size": "11pt" }}>
+          <h3 className={style.title}>INFORMAÇÕES DO CLIENTE:</h3>
+          <div className={style.client_info}>
             <p>
-              <strong>TP: </strong>
+              TP:
               {tpValue}
             </p>
             <p>
-              <strong> NOME COMPLETO: </strong>
+              NOME COMPLETO:
             </p>
             <p>
-              <strong>CPF: </strong>
+              CPF:
             </p>
             <p>
-              <strong>CARGO: </strong>
+              CARGO:
             </p>
             <p>
-              <strong>CNPJ: </strong>
+              CNPJ:
             </p>
             <p>
-              <strong>RAZÃO SOCIAL: </strong>
+              RAZÃO SOCIAL:
             </p>
             <p>
-              <strong>NOME LOJA/REDE: </strong>
+              NOME LOJA/REDE:
             </p>
             <p>
-              <strong>ENDEREÇO: </strong>
+              ENDEREÇO:
             </p>
             <p>
-              <strong>TELEFONE: </strong>
+              TELEFONE:
             </p>
           </div>
 
-          <h3>Descrição do Serviço Fora do Escopo</h3>
+          <h3 className={style.title}>Descrição do Serviço Fora do Escopo</h3>
           <table
             style={{
               width: "100%",
@@ -85,7 +86,7 @@ export default function ModalMailSend({
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => (
+              {items.map((item) => item.quantity > 0 && (
                 <tr key={item.id}>
                   <td>{item.label}</td>
                   <td>R$: {item.value}</td>
@@ -102,7 +103,7 @@ export default function ModalMailSend({
             </tbody>
           </table>
 
-          <h3>PRÉ-REQUISITOS:</h3>
+          <h3 className={style.title}>PRÉ-REQUISITOS:</h3>
           <div style={{ "font-size": "11pt" }}>
             <p>
               Consulte os requisitos mínimos de equipamentos em:{" "}

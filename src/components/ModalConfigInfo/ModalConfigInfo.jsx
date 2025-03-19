@@ -38,7 +38,7 @@ export default function ModalConfigInfo({
       <form>
         <div className={style.container_question}>
           <strong>
-            1- A instalação será realizada com Backup ou Base Zerada?
+            1- A instalação será realizada em um Terminal ou Servidor? Se for servidor, com backup ou sem dados?
           </strong>
 
           <div className={style.container_input}>
@@ -231,7 +231,7 @@ export default function ModalConfigInfo({
 
         <div className={style.container_question}>
           <strong>
-            9- Qual é a marca e modelo do emissor de cupom (DANFE)?
+            9- Qual é a marca e modelo da impressora de Cupom Fiscal (DANFE)?
           </strong>
           <input
             type="text"

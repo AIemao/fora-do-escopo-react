@@ -54,6 +54,7 @@ export default function ServiceForm({
             </div>
           </div>
         ))}
+        <p className={style.text_alert}> *As horas e valor total do treinamento são consolidados no final do treinamento.</p>
         <div className={style.container_total_price}>
           <p>Total geral:</p>
 
