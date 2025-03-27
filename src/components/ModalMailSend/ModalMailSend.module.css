@@ -1,0 +1,37 @@
+p {
+  margin: 0;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 16px;
+  margin-top: 40px;
+  filter: drop-shadow(1px 1px 1px #000000);
+
+  background-color: #411e5adf;
+  color: #fff;
+  font-weight: bold;
+
+}
+
+.modal {
+  text-align: start;
+}
+
+.title {
+  margin-top: 40px;
+}
+
+.container_text {
+  font-family: "Calibri sans-serif";
+}
+
+.base_text {
+  font-size: 14px;
+}
+
+
+.close {
+  cursor: pointer;
+}
